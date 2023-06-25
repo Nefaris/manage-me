@@ -1,0 +1,55 @@
+<div class="flex justify-between gap-4 mb-8">
+  <h1 class="text-3xl font-bold">Functionalities</h1>
+
+  <a
+    mat-flat-button
+    color="primary"
+    [routerLink]="['/functionalities', 'create']"
+  >
+    Create
+  </a>
+</div>
+
+<div *ngIf="functionalities | async as data; else loading">
+  <div *ngIf="data.length; else noData">
+    <div class="grid grid-cols-5">
+      <p class="font-bold">Name</p>
+      <p class="font-bold">Priority</p>
+      <p class="font-bold">Status</p>
+      <p class="font-bold">Actions</p>
+    </div>
+
+    <div class="grid grid-cols-5" *ngFor="let functionality of data">
+      <p>{{ functionality.name }}</p>
+      <p>{{ functionality.priority }}</p>
+      <p>{{ functionality.status }}</p>
+      <div class="flex gap-2">
+        <a
+          class="hover:underline"
+          [routerLink]="['/functionalities', functionality.id, 'details']"
+        >
+          Details
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <div class="flex flex-col gap-2 items-center">
+      <p>There are no functionalities yet.</p>
+      <a
+        mat-flat-button
+        color="primary"
+        [routerLink]="['/functionalities', 'create']"
+      >
+        Create
+      </a>
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #loading>
+  <div class="flex justify-center py-10">
+    <mat-spinner />
+  </div>
+</ng-template>

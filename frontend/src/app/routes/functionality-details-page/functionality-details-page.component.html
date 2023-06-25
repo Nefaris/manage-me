@@ -1,0 +1,50 @@
+<div *ngIf="functionality | async as data; else loading">
+  <div class="flex justify-between gap-4 mb-8">
+    <div class="max-w-lg">
+      <h1 class="text-3xl font-bold mb-2">{{ data.name }}</h1>
+      <p class="text-sm">
+        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+        Donec sollicitudin molestie malesuada.
+      </p>
+    </div>
+
+    <a
+      mat-flat-button
+      color="primary"
+      [routerLink]="['/functionalities', 'create']"
+    >
+      Create
+    </a>
+  </div>
+
+  <h2 class="text-2xl font-bold mb-2">Task list</h2>
+
+  <div class="grid grid-cols-5">
+    <p class="font-bold">Name</p>
+    <p class="font-bold">Description</p>
+    <p class="font-bold">Priority</p>
+    <p class="font-bold">Status</p>
+    <p class="font-bold">Actions</p>
+  </div>
+
+  <div class="grid grid-cols-5" *ngFor="let task of data.tasks">
+    <!-- <p>{{ functionality.name }}</p>
+    <p>{{ functionality.description }}</p>
+    <p>{{ functionality.priority }}</p>
+    <p>{{ functionality.status }}</p>
+    <div class="flex gap-2">
+      <a
+        class="hover:underline"
+        [routerLink]="['/functionalities', functionality.id]"
+      >
+        Details
+      </a>
+    </div> -->
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="flex justify-center py-10">
+    <mat-spinner />
+  </div>
+</ng-template>
