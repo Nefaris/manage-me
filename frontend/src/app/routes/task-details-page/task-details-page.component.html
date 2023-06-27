@@ -1,4 +1,22 @@
 <div *ngIf="task | async as data; else loading">
+  <div class="flex gap-1 items-center mb-8">
+    <a
+      class="text-blue-500 hover:underline"
+      [routerLink]="['/functionalities']"
+    >
+      Functionalities
+    </a>
+    <span>></span>
+    <a
+      class="text-blue-500 hover:underline"
+      [routerLink]="['/functionalities', data.functionality.id, 'details']"
+    >
+      {{ data.functionality.name }}
+    </a>
+    <span>></span>
+    <span>{{ data.name }}</span>
+  </div>
+
   <div class="flex justify-between gap-4 mb-4">
     <div class="max-w-2xl">
       <div class="flex gap-8 mb-4">

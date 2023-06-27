@@ -38,6 +38,11 @@ const routes: Routes = [
     path: 'functionalities/:id/task/:taskId/edit',
     component: EditTaskPageComponent,
   },
+  {
+    path: '',
+    redirectTo: '/functionalities',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
