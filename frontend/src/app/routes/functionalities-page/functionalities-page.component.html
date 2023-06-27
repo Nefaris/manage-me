@@ -1,4 +1,4 @@
-<div class="flex justify-between gap-4 mb-8">
+<div class="flex justify-between gap-4 mb-4">
   <h1 class="text-3xl font-bold">Functionalities</h1>
 
   <a
@@ -6,33 +6,62 @@
     color="primary"
     [routerLink]="['/functionalities', 'create']"
   >
-    Create
+    Create functionality
   </a>
 </div>
 
 <div *ngIf="functionalities | async as data; else loading">
-  <div *ngIf="data.length; else noData">
-    <div class="grid grid-cols-5">
-      <p class="font-bold">Name</p>
-      <p class="font-bold">Priority</p>
-      <p class="font-bold">Status</p>
-      <p class="font-bold">Actions</p>
-    </div>
+  <table
+    class="w-full border-collapse border border-slate-500"
+    *ngIf="data.length; else noData"
+  >
+    <thead>
+      <tr>
+        <th class="border border-slate-600 py-2 px-4 text-left">Name</th>
+        <th class="border border-slate-600 py-2 px-4 text-left">Priority</th>
+        <th class="border border-slate-600 py-2 px-4 text-left">Status</th>
+        <th class="border border-slate-600 py-2 px-4 text-left">Actions</th>
+      </tr>
+    </thead>
 
-    <div class="grid grid-cols-5" *ngFor="let functionality of data">
-      <p>{{ functionality.name }}</p>
-      <p>{{ functionality.priority }}</p>
-      <p>{{ functionality.status }}</p>
-      <div class="flex gap-2">
-        <a
-          class="hover:underline"
-          [routerLink]="['/functionalities', functionality.id, 'details']"
-        >
-          Details
-        </a>
-      </div>
-    </div>
-  </div>
+    <tbody>
+      <tr *ngFor="let functionality of data">
+        <td class="border border-slate-600 py-2 px-4">
+          {{ functionality.name }}
+        </td>
+        <td class="border border-slate-600 py-2 px-4">
+          <div
+            [ngClass]="[
+              'inline-block rounded-xl border font-medium px-3 py-1 text-xs',
+              priorityClassNameMap[functionality.priority]
+            ]"
+          >
+            {{ functionality.priority }}
+          </div>
+        </td>
+        <td class="border border-slate-600 py-2 px-4">
+          <div
+            [ngClass]="[
+              'inline-block rounded-xl border font-medium px-3 py-1 text-xs',
+              statusClassNameMap[functionality.status]
+            ]"
+          >
+            {{ functionality.status }}
+          </div>
+        </td>
+        <td class="border border-slate-600 py-2 px-4">
+          <div class="flex gap-2">
+            <a
+              class="text-blue-500 hover:underline"
+              [routerLink]="['/functionalities', functionality.id, 'details']"
+            >
+              Details
+            </a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
   <ng-template #noData>
     <div class="flex flex-col gap-2 items-center">

@@ -18,6 +18,10 @@ import { LoginPageComponent } from './routes/login-page/login-page.component';
 import { FunctionalitiesPageComponent } from './routes/functionalities-page/functionalities-page.component';
 import { FunctionalityDetailsPageComponent } from './routes/functionality-details-page/functionality-details-page.component';
 import { CreateFunctionalityPageComponent } from './routes/create-functionality-page/create-functionality-page.component';
+import { CreateTaskPageComponent } from './routes/create-task-page/create-task-page.component';
+import { TaskDetailsPageComponent } from './routes/task-details-page/task-details-page.component';
+import { EditTaskPageComponent } from './routes/edit-task-page/edit-task-page.component';
+import { EditFunctionalityPageComponent } from './routes/edit-functionality-page/edit-functionality-page.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,10 @@ import { CreateFunctionalityPageComponent } from './routes/create-functionality-
     FunctionalitiesPageComponent,
     FunctionalityDetailsPageComponent,
     CreateFunctionalityPageComponent,
+    CreateTaskPageComponent,
+    TaskDetailsPageComponent,
+    EditTaskPageComponent,
+    EditFunctionalityPageComponent,
   ],
   imports: [
     BrowserModule,
